@@ -5,11 +5,12 @@ Updated: 2026-04-15
 
 ## Overview
 
-This module contains 8 source files and 1 submodules.
+This module contains 9 source files and 1 submodules.
 
 ## Source Files
 
 - 📄 `bash-tool.ts`
+- 📄 `file-edit.ts`
 - 📄 `file-tools.ts`
 - 📄 `index.ts`
 - 📄 `mcp-tool.ts`

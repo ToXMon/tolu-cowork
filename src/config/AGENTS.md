@@ -5,13 +5,17 @@ Updated: 2026-04-15
 
 ## Overview
 
-This module contains 3 source files and 0 submodules.
+This module contains 3 source files and 1 submodules.
 
 ## Source Files
 
 - 📄 `config-loader.ts`
 - 📄 `config-schema.ts`
 - 📄 `index.ts`
+
+## Submodules
+
+- [`__tests__/`](__tests__/AGENTS.md)
 
 ## Patterns & Conventions
 

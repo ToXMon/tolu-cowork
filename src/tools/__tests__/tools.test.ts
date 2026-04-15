@@ -3,6 +3,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { z } from "zod";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import * as os from "node:os";
@@ -39,7 +40,7 @@ describe("toToluTool", () => {
     const def: ToluToolDefinition = {
       name: "test",
       description: "Test tool",
-      parameters: {} as any,
+      parameters: z.object({}),
       parameterSchema: {
         type: "object",
         properties: { x: { type: "string" } },

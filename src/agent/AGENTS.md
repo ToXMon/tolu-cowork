@@ -5,10 +5,11 @@ Updated: 2026-04-15
 
 ## Overview
 
-This module contains 5 source files and 1 submodules.
+This module contains 6 source files and 1 submodules.
 
 ## Source Files
 
+- 📄 `agent-loop.ts`
 - 📄 `agent-session.ts`
 - 📄 `index.ts`
 - 📄 `message-types.ts`

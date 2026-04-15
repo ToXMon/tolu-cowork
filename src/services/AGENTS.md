@@ -5,15 +5,21 @@ Updated: 2026-04-15
 
 ## Overview
 
-This module contains 5 source files and 0 submodules.
+This module contains 7 source files and 1 submodules.
 
 ## Source Files
 
 - 📄 `index.ts`
 - 📄 `projects-service.ts`
+- 📄 `scheduler-cron.ts`
 - 📄 `scheduler-service.ts`
+- 📄 `scheduler-task.ts`
 - 📄 `skills-service.ts`
 - 📄 `sub-agents-service.ts`
+
+## Submodules
+
+- [`__tests__/`](__tests__/AGENTS.md)
 
 ## Patterns & Conventions
 

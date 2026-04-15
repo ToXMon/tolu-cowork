@@ -7,41 +7,24 @@
  */
 
 import type {
-  ToluMessage,
   ToluAssistantMessage,
   ToluToolCallContent,
   ToluUserMessage,
   ToluToolResultMessage,
-  ToluContext,
-  ToluStreamEvent,
-  ToluUsage,
 } from "../types/index.js";
 import type { ToluProvider } from "../provider/tolu-provider.js";
 import type { SandboxManager } from "../sandbox/sandbox-manager.js";
-import type { AgentConfig, AgentEvent } from "./message-types.js";
+import type { AgentConfig } from "./message-types.js";
 import type { ToluToolDefinition } from "../tools/tool-interface.js";
-import { toToluTool } from "../tools/tool-interface.js";
 import { AgentSession } from "./agent-session.js";
 import { ToolExecutor } from "./tool-executor.js";
+import { processStream, findLastAssistant, emptyUsage, buildContext } from "./agent-loop.js";
 
 // ─── Defaults ────────────────────────────────────────────────────────────────
 
 const DEFAULT_MAX_TURNS = 20;
 const DEFAULT_MAX_TOOL_CALLS_PER_TURN = 10;
 const DEFAULT_TOOL_EXECUTION: "parallel" | "sequential" = "parallel";
-
-// ─── Empty Usage Helper ──────────────────────────────────────────────────────
-
-function emptyUsage(): ToluUsage {
-  return {
-    input: 0,
-    output: 0,
-    cacheRead: 0,
-    cacheWrite: 0,
-    totalTokens: 0,
-    cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 },
-  };
-}
 
 // ─── ToluAgent ───────────────────────────────────────────────────────────────
 
@@ -177,11 +160,12 @@ export class ToluAgent {
         await activeSession.emit({ type: "turn_start", sessionId, turn: turns });
 
         // Build context for the provider
-        const context = this.buildContext(activeSession);
+        const context = buildContext(this.registeredTools, this.config.systemPrompt, activeSession);
         const streamOpts = { signal };
 
         // Stream the response
-        const assistantMessage = await this.processStream(
+        const assistantMessage = await processStream(
+          this.provider,
           context,
           streamOpts,
           activeSession,
@@ -261,7 +245,7 @@ export class ToluAgent {
 
       // Get the last assistant message
       const messages = activeSession.getMessages();
-      let finalMessage = this.findLastAssistant(messages);
+      let finalMessage = findLastAssistant(messages);
 
       if (!finalMessage) {
         finalMessage = {
@@ -303,84 +287,5 @@ export class ToluAgent {
     } finally {
       this.currentAbortController = null;
     }
-  }
-
-  /**
-   * Build a ToluContext from the session's message history and registered tools.
-   */
-  private buildContext(session: AgentSession): ToluContext {
-    const tools = this.registeredTools.size > 0
-      ? Array.from(this.registeredTools.values()).map(toToluTool)
-      : undefined;
-
-    return {
-      systemPrompt: this.config.systemPrompt || undefined,
-      messages: [...session.getMessages()],
-      tools,
-    };
-  }
-
-  /**
-   * Process a stream from the provider, accumulating into an assistant message.
-   */
-  private async processStream(
-    context: ToluContext,
-    options: { signal?: AbortSignal },
-    session: AgentSession,
-    sessionId: string,
-  ): Promise<ToluAssistantMessage> {
-    let lastMessage: ToluAssistantMessage | null = null;
-
-    await session.emit({ type: "message_start", sessionId });
-
-    for await (const event of this.provider.stream(context, options)) {
-      switch (event.type) {
-        case "done":
-          lastMessage = event.message;
-          break;
-        case "error":
-          lastMessage = event.error;
-          break;
-        case "text_delta":
-        case "thinking_delta":
-          // Emit content updates for real-time display
-          if (event.partial.content.length > 0) {
-            const latest = event.partial.content[event.partial.content.length - 1];
-            if (latest) {
-              await session.emit({
-                type: "message_update",
-                sessionId,
-                content: latest,
-              });
-            }
-          }
-          break;
-      }
-    }
-
-    return (
-      lastMessage ?? {
-        role: "assistant",
-        content: [],
-        model: this.provider.modelId,
-        usage: emptyUsage(),
-        stopReason: "stop",
-        timestamp: Date.now(),
-      }
-    );
-  }
-
-  /**
-   * Find the last assistant message in a message array.
-   */
-  private findLastAssistant(
-    messages: readonly ToluMessage[],
-  ): ToluAssistantMessage | null {
-    for (let i = messages.length - 1; i >= 0; i--) {
-      if (messages[i].role === "assistant") {
-        return messages[i] as ToluAssistantMessage;
-      }
-    }
-    return null;
   }
 }

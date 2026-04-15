@@ -5,10 +5,11 @@ Updated: 2026-04-15
 
 ## Overview
 
-This module contains 1 source files and 0 submodules.
+This module contains 2 source files and 0 submodules.
 
 ## Source Files
 
+- 🧪 `sandbox-individual.test.ts`
 - 🧪 `sandbox-manager.test.ts`
 
 ## Patterns & Conventions

@@ -1,21 +1,15 @@
-# AGENTS.md — utils/
+# AGENTS.md — __tests__/
 
-Module: `utils`
+Module: `cli/__tests__`
 Updated: 2026-04-15
 
 ## Overview
 
-This module contains 3 source files and 1 submodules.
+This module contains 1 source files and 0 submodules.
 
 ## Source Files
 
-- 📄 `format.ts`
-- 📄 `logger.ts`
-- 📄 `stream.ts`
-
-## Submodules
-
-- [`__tests__/`](__tests__/AGENTS.md)
+- 🧪 `cli.test.ts`
 
 ## Patterns & Conventions
 
