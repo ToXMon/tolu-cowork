@@ -127,11 +127,67 @@ docker-compose up -d
 
 Includes: Tolu Core + Redis (sessions) + PostgreSQL (persistence) + sandbox container.
 
+## BrowserPod Live Verification
+
+BrowserPod is an **optional** live verification layer. When enabled, users can watch their AI-generated code run in a real browser sandbox with live dev server preview.
+
+### How It Works
+
+1. AI agent generates code and calls the `browserpod_verify` tool
+2. Core creates a verification session and returns a session ID
+3. Web UI picks up the session, loads BrowserPod SDK in-browser
+4. Files are written to BrowserPod's virtual filesystem
+5. Dev server runs inside the browser sandbox (WebAssembly)
+6. Portal URL provides live preview of the running app
+
+### Configuration
+
+Add to `tolu.config.json`:
+
+```json
+{
+  "browserpod": {
+    "enabled": true,
+    "apiKey": "your-browserpod-api-key",
+    "nodeVersion": "22",
+    "defaultTimeout": 60000,
+    "frameworks": ["nextjs", "express", "react", "static", "node"]
+  }
+}
+```
+
+Get an API key from [console.browserpod.io](https://console.browserpod.io). Free for open-source projects (apply for OSS grant).
+
+### Supported Frameworks
+
+| Framework | Command | Default Port |
+|-----------|---------|-------------|
+| Next.js | `npm run dev` | 3000 |
+| Express | `node server.js` | 3000 |
+| React | `npm start` | 3000 |
+| Static | `npx http-server .` | 8080 |
+| Node.js | `node index.js` | 3000 |
+
+### Demo
+
+```bash
+npx tsx src/demo/demo-verifier.ts
+```
+
+### Architecture
+
+- **Core** (`src/services/browserpod-service.ts`): Manages verification sessions, state, output streaming
+- **Tool** (`src/tools/browserpod-tool.ts`): Agent-facing `browserpod_verify` tool
+- **Types** (`src/types/verification-types.ts`): Session, result, framework interfaces
+- **Web UI** (`tolu-cowork-web/`): Lit components for browser-side BrowserPod interaction
+
+BrowserPod is **optional** — the Docker sandbox is the default execution environment. No BrowserPod dependency is required for core functionality.
+
 ## Stats
 
-- **67 TypeScript files**
-- **~10,500 lines production code**
-- **~2,600 lines tests**
+- **67 TypeScript files** (core) + **4 TypeScript files** (web components)
+- **~11,000 lines production code**
+- **~3,000 lines tests** (31 BrowserPod tests)
 - **0 compilation errors**
 - **MIT licensed** (all three source repos)
 

@@ -1,7 +1,7 @@
 # AGENTS.md — sandbox/
 
 Module: `sandbox`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 

@@ -79,6 +79,18 @@ export const ToluConfigSchema = z.object({
         .default('parallel'),
     })
     .default({}),
+  browserpod: z
+    .object({
+      enabled: z.boolean().default(false),
+      apiKey: z.string().optional(),
+      nodeVersion: z.string().default('22'),
+      storageKey: z.string().optional(),
+      defaultTimeout: z.number().default(60_000),
+      frameworks: z
+        .array(z.enum(['nextjs', 'express', 'react', 'static', 'node', 'auto']))
+        .default(['nextjs', 'express', 'react', 'static', 'node', 'auto']),
+    })
+    .default({}),
 });
 
 export type ToluConfig = z.infer<typeof ToluConfigSchema>;

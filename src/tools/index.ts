@@ -31,5 +31,8 @@ export { WebSearchTool, WebFetchTool } from "./web-tool.js";
 export { createMCPTool } from "./mcp-tool.js";
 export type { MCPServerConfig } from "./mcp-tool.js";
 
+// ─── BrowserPod Tool ──────────────────────────────────────────────────────
+export { createBrowserPodTool } from "./browserpod-tool.js";
+
 // ─── Tool Loader ─────────────────────────────────────────────────────────────
 export { ToolLoader } from "./tool-loader.js";

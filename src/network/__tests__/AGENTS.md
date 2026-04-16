@@ -1,7 +1,7 @@
 # AGENTS.md — __tests__/
 
 Module: `network/__tests__`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 

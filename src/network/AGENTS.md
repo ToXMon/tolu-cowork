@@ -1,7 +1,7 @@
 # AGENTS.md — network/
 
 Module: `network`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 

@@ -1,15 +1,16 @@
 # AGENTS.md — tools/
 
 Module: `tools`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 
-This module contains 9 source files and 1 submodules.
+This module contains 10 source files and 1 submodules.
 
 ## Source Files
 
 - 📄 `bash-tool.ts`
+- 📄 `browserpod-tool.ts`
 - 📄 `file-edit.ts`
 - 📄 `file-tools.ts`
 - 📄 `index.ts`

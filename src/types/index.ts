@@ -50,3 +50,19 @@ export type {
   ToluStreamError,
   ToluStreamEvent,
 } from "./config-types.js";
+
+// Verification types
+export type {
+  BuildStatus,
+  TestResult,
+  PortalInfo,
+  VerificationRequest,
+  VerificationFramework,
+  VerificationResult,
+  VerificationSession,
+  FrameworkConfig,
+} from "./verification-types.js";
+
+export {
+  FRAMEWORK_CONFIGS,
+} from "./verification-types.js";

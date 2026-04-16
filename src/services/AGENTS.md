@@ -1,14 +1,15 @@
 # AGENTS.md — services/
 
 Module: `services`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 
-This module contains 7 source files and 1 submodules.
+This module contains 8 source files and 1 submodules.
 
 ## Source Files
 
+- 📄 `browserpod-service.ts`
 - 📄 `index.ts`
 - 📄 `projects-service.ts`
 - 📄 `scheduler-cron.ts`

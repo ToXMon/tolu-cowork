@@ -1,6 +1,6 @@
-# AGENTS.md — __tests__/
+# AGENTS.md — demo/
 
-Module: `remote/__tests__`
+Module: `demo`
 Updated: 2026-04-16
 
 ## Overview
@@ -9,7 +9,7 @@ This module contains 1 source files and 0 submodules.
 
 ## Source Files
 
-- 🧪 `remote.test.ts`
+- 📄 `demo-verifier.ts`
 
 ## Patterns & Conventions
 

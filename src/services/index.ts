@@ -13,3 +13,5 @@ export type { ScheduledTask } from './scheduler-service.js';
 
 export { SubAgentsService } from './sub-agents-service.js';
 export type { SubAgent } from './sub-agents-service.js';
+
+export { BrowserPodVerificationService } from './browserpod-service.js';

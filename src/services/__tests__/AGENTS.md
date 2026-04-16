@@ -1,14 +1,15 @@
 # AGENTS.md — __tests__/
 
 Module: `services/__tests__`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 
-This module contains 1 source files and 0 submodules.
+This module contains 2 source files and 0 submodules.
 
 ## Source Files
 
+- 🧪 `browserpod-service.test.ts`
 - 🧪 `services.test.ts`
 
 ## Patterns & Conventions

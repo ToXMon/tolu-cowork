@@ -1,11 +1,11 @@
 # AGENTS.md — src/
 
 Module: `.`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 
-This module contains 2 source files and 12 submodules.
+This module contains 2 source files and 13 submodules.
 
 ## Source Files
 
@@ -17,6 +17,7 @@ This module contains 2 source files and 12 submodules.
 - [`agent/`](agent/AGENTS.md)
 - [`cli/`](cli/AGENTS.md)
 - [`config/`](config/AGENTS.md)
+- [`demo/`](demo/AGENTS.md)
 - [`network/`](network/AGENTS.md)
 - [`provider/`](provider/AGENTS.md)
 - [`remote/`](remote/AGENTS.md)

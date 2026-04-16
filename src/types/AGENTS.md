@@ -1,11 +1,11 @@
 # AGENTS.md — types/
 
 Module: `types`
-Updated: 2026-04-15
+Updated: 2026-04-16
 
 ## Overview
 
-This module contains 4 source files and 0 submodules.
+This module contains 5 source files and 0 submodules.
 
 ## Source Files
 
@@ -13,6 +13,7 @@ This module contains 4 source files and 0 submodules.
 - 📄 `index.ts`
 - 📄 `provider-types.ts`
 - 📄 `tool-types.ts`
+- 📄 `verification-types.ts`
 
 ## Patterns & Conventions
 
